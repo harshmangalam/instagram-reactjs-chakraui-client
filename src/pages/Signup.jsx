@@ -134,7 +134,7 @@ function Signup({ history }) {
           <form onSubmit={handleSubmit(onSubmit)}>
             <VStack>
               <FormControl isInvalid={errors.name}>
-                <FormLabel htmlFor="name">Full Name</FormLabel>
+                <FormLabel htmlFor="name"></FormLabel>
                 <Input
                   id="name"
                   placeholder="Full Name"
@@ -146,7 +146,7 @@ function Signup({ history }) {
               </FormControl>
 
               <FormControl isInvalid={errors.username}>
-                <FormLabel htmlFor="username">Username</FormLabel>
+                <FormLabel htmlFor="username"></FormLabel>
                 <Input
                   id="username"
                   placeholder="Username"
@@ -159,7 +159,7 @@ function Signup({ history }) {
               </FormControl>
 
               <FormControl isInvalid={errors.password}>
-                <FormLabel htmlFor="password">Password</FormLabel>
+                <FormLabel htmlFor="password"></FormLabel>
                 <Input
                   type="password"
                   id="password"

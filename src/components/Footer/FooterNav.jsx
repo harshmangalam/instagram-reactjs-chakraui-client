@@ -7,7 +7,6 @@ import {
 } from "@chakra-ui/react";
 import { BiSun, BiMoon } from "react-icons/bi";
 import { AiOutlineHome } from "react-icons/ai";
-import { RiSearch2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import useAuth from "../../store/authStore";
 import { BsPeople } from "react-icons/bs";
@@ -25,6 +24,8 @@ function FooterNav() {
       right="0"
       left="0"
       display={["block", "block", "none"]}
+      borderTop="1px"
+      borderColor={colorMode === "light" ? "gray.300" : "gray.600"}
     >
       <HStack justifyContent="space-between" py="1" px="1">
         <IconButton
@@ -34,14 +35,6 @@ function FooterNav() {
           variant="ghost"
           rounded="full"
           icon={<AiOutlineHome fontSize="28px" />}
-          size="md"
-        />
-
-        <IconButton
-          aria-label="Search"
-          variant="ghost"
-          rounded="full"
-          icon={<RiSearch2Line fontSize="28px" />}
           size="md"
         />
 
@@ -68,12 +61,7 @@ function FooterNav() {
           }
         ></IconButton>
 
-        <Avatar
-          as={Link}
-          to={`/${currentUser?.username}`}
-          size="sm"
-          name="Harsh Mangalam"
-        />
+        <Avatar as={Link} to={`/${currentUser?.username}`} size="sm" />
       </HStack>
     </Box>
   );

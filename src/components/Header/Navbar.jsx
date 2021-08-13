@@ -1,17 +1,6 @@
-import {
-  Box,
-  HStack,
-  IconButton,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Text,
-  useColorMode,
-} from "@chakra-ui/react";
-
+import { Box, HStack, IconButton, Text, useColorMode } from "@chakra-ui/react";
 
 import { AiOutlineHome, AiOutlineHeart } from "react-icons/ai";
-import { RiSearch2Line } from "react-icons/ri";
 import { BsPeople } from "react-icons/bs";
 
 import ProfileDropdown from "./ProfileDropdown";
@@ -40,15 +29,6 @@ function Navbar() {
               Instagram
             </Text>
           </Link>
-          <Box>
-            <InputGroup size="sm">
-              <InputLeftElement
-                pointerEvents="none"
-                children={<RiSearch2Line color="gray" />}
-              />
-              <Input type="search" placeholder="Search" />
-            </InputGroup>
-          </Box>
 
           <HStack>
             <IconButton

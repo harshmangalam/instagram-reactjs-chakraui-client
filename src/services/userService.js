@@ -1,13 +1,5 @@
 import axios from "axios";
 
-export const fetchUsers = async () => {
-  try {
-    const res = await axios.get("/user");
-    return res.data;
-  } catch (error) {
-    throw new Error(error);
-  }
-};
 
 export const fetchUserSuggestions = async () => {
   try {

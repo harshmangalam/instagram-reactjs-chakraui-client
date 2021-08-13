@@ -5,6 +5,7 @@ import {
   IconButton,
   Text,
   VStack,
+  HStack,
 } from "@chakra-ui/react";
 import UserProfile from "../components/User/UserProfile";
 import UserSuggestions from "../components/User/UserSuggestions";
@@ -12,12 +13,19 @@ import PostCard from "../components/Post/PostCard";
 import MobileNav from "../components/Header/MobileNav";
 import { useQuery } from "react-query";
 import { fetchPosts } from "../services/postService";
-import PostSkelton from "../components/Post/PostSkelton";
 import { AiOutlineHeart } from "react-icons/ai";
 import CreatePost from "../components/Post/CreatePost";
+import { Link } from "react-router-dom";
+
+
+import PostSkelton from "../components/Post/PostSkelton";
 
 function Home() {
-  const { isLoading, isError, data } = useQuery("posts", fetchPosts);
+  const {
+    isLoading: isPostLoading,
+    isError: isPostError,
+    data: postData,
+  } = useQuery("posts", fetchPosts);
 
   return (
     <Box>
@@ -43,16 +51,16 @@ function Home() {
       >
         <GridItem colSpan={[5, 5, 3]}>
           <VStack spacing={4} alignItems="stretch">
-            {isLoading && <PostSkelton />}
-            {isError && <p>Error</p>}
-            {data?.data?.length ? (
-              data.data.map((post) => <PostCard key={post.id} post={post} />)
+            {isPostLoading ? (
+              <PostSkelton />
+            ) : isPostError ? (
+              <Text textAlign="center">Can`t load posts</Text>
+            ) : postData.data.length ? (
+              postData.data.map((post) => (
+                <PostCard key={post.id} post={post} />
+              ))
             ) : (
-              <Box p="2">
-                <Text fontWeight="bold" color="gray.400" textAlign="center">
-                No Posts
-                </Text>
-              </Box>
+              <Text textAlign="center">No Posts</Text>
             )}
           </VStack>
         </GridItem>
@@ -64,7 +72,19 @@ function Home() {
           top="16"
         >
           <UserProfile />
-          <UserSuggestions />
+          <Box mt="6">
+            <HStack justifyContent="space-between">
+              <Text fontSize="md" fontWeight="bold" color="gray.500">
+                Suggestions for you
+              </Text>
+              <Text fontWeight="bold" fontSize="sm">
+                <Link to="/explore/users">See All</Link>
+              </Text>
+            </HStack>
+            <Box py="4">
+              <UserSuggestions />
+            </Box>
+          </Box>
         </GridItem>
       </Grid>
     </Box>

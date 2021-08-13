@@ -1,8 +1,9 @@
-import { Box, HStack, Skeleton, SkeletonCircle } from "@chakra-ui/react";
+import { Box, HStack, Skeleton, SkeletonCircle, useColorMode } from "@chakra-ui/react";
 
 function PostSkelton() {
+  const {colorMode} = useColorMode()
   return (
-    <Box bg="white" border="1px" borderColor="gray.200">
+    <Box bg={colorMode==="light" ? "white" : "gray.700"}>
       <HStack spacing="4" p="4">
         <SkeletonCircle size="10" />
 

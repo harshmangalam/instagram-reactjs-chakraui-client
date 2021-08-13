@@ -32,9 +32,7 @@ function FollowUser({ user }) {
     },
   });
 
-  const hasFollowing = user.edges.followers?.find(
-    (u) => u.id === currentUser.id
-  );
+ 
 
   return (
     <Button
@@ -44,7 +42,7 @@ function FollowUser({ user }) {
       colorScheme="twitter"
       isLoading={mutation.isLoading}
     >
-      {hasFollowing ? "Follow" : "Unfollow"}
+      {user.edges.followers?.find(u=>u.id == currentUser.id) ? "Unfollow" : "Follow"}
     </Button>
   );
 }

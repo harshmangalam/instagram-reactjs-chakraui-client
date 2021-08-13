@@ -81,7 +81,7 @@ function Login({ history }) {
           <form onSubmit={handleSubmit(onSubmit)}>
             <VStack>
               <FormControl isInvalid={errors.username}>
-                <FormLabel htmlFor="username">Username</FormLabel>
+                <FormLabel htmlFor="username"></FormLabel>
                 <Input
                   id="username"
                   placeholder="Username"
@@ -93,7 +93,7 @@ function Login({ history }) {
               </FormControl>
 
               <FormControl isInvalid={errors.password}>
-                <FormLabel htmlFor="password">Password</FormLabel>
+                <FormLabel htmlFor="password"></FormLabel>
                 <Input
                   type="password"
                   id="password"

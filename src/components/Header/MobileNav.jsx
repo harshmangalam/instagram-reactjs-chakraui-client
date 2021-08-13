@@ -1,7 +1,7 @@
 import { Box, HStack, useColorMode } from "@chakra-ui/react";
 
 function MobileNav({ children }) {
-  const {colorMode}  = useColorMode()
+  const { colorMode } = useColorMode();
   return (
     <Box
       bg={colorMode === "light" ? "white" : "gray.700"}
@@ -11,6 +11,8 @@ function MobileNav({ children }) {
       right="0"
       zIndex="overlay"
       display={["block", "block", "none"]}
+      borderBottom="1px"
+      borderColor={colorMode==="light" ? "gray.300" : "gray.600"}
     >
       <HStack py="2" px="1" justifyContent="space-between">
         {children}

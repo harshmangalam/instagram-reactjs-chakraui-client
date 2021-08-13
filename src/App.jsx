@@ -64,6 +64,7 @@ function App() {
                 maxW="container.lg"
                 mx="auto"
                 px={["0", "0", "4", "0"]}
+                pb="10"
               >
                 <Switch>
                   <ProtectedRoute path="/" exact component={Home} />

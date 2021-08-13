@@ -1,12 +1,22 @@
 import { Avatar, Box, HStack, Spinner, Text, VStack } from "@chakra-ui/react";
 import MobileNav from "../components/Header/MobileNav";
 import { useQuery } from "react-query";
-import { fetchUsers } from "../services/userService";
+import { fetchUserSuggestions } from "../services/userService";
 import FollowUser from "../components/User/FollowUser";
 import { Link } from "react-router-dom";
+import Loading from "../components/Loading";
 
 function Users() {
-  const { isLoading, isError, data } = useQuery("users", fetchUsers);
+  const { isLoading, isError, data } = useQuery("users", fetchUserSuggestions);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (isError) {
+    return <Text textAlign="center">Can`t load users</Text>;
+  }
+
   return (
     <Box>
       <MobileNav>
@@ -16,11 +26,13 @@ function Users() {
       </MobileNav>
 
       <Box pt={["14", "14", "0"]} maxW="md" m="auto">
-        {isLoading && <Spinner size="lg" colorScheme="twitter" />}
-        {isError && <Text>Error</Text>}
-        {data && (
-          <VStack spacing="6" alignItems="stretch" px={["2", "2", "0"]}>
-            {data.data.map((user) => (
+        <Box py="4" px={["2", "2", "0"]}>
+          <Text fontSize="lg">Suggestions</Text>
+        </Box>
+
+        <VStack spacing="6" alignItems="stretch" px={["2", "2", "0"]}>
+          {data.data.length ? (
+            data.data.map((user) => (
               <HStack key={user.id} justify="space-between">
                 <HStack spacing="4">
                   <Avatar />
@@ -30,9 +42,11 @@ function Users() {
                 </HStack>
                 <FollowUser user={user} />
               </HStack>
-            ))}
-          </VStack>
-        )}
+            ))
+          ) : (
+            <Text textAlign="center">No Users</Text>
+          )}
+        </VStack>
       </Box>
     </Box>
   );
